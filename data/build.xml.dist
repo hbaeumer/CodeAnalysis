@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="FooBar" default="full-analysis">
+
+    <taskdef name="phpdox" classname="CodeAnalysis\Task\PhpdoxTask" />
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+    <target name="prepare">
+        <echo msg="Making directory ./build"/>
+        <mkdir dir="./build/reports"/>
+        <mkdir dir="./build/configs"/>
+    </target>
+
+    <target name="full-analysis" depends="prepare, phpcs,measure-and-log, phpdox"></target>
+
+    <target name="phpcs">
+        <phpcodesniffer
+                standard="PSR2"
+                format="summary"
+                file="."
+                ignorePatterns="vendor"
+                allowedFileExtensions="php">
+            <formatter type="checkstyle" outfile="./build/reports/checkstyle.xml"/>
+        </phpcodesniffer>
+    </target>
+
+    <target name="phpdox">
+        <phpdox></phpdox>
+    </target>
+
+    <target name="measure-and-log"
+            description="Measures and logs the size of the project" hidden="true">
+        <phploc reportType="xml" reportName="phploc"
+                reportDirectory="./build/reports">
+            <fileset dir=".">
+                <include name="**/*.php" />
+                <include name="*.php" />
+                <exclude name="vendor/**/*"/>
+            </fileset>
+        </phploc>
+    </target>
+
+</project>

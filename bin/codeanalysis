@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+
+putenv("CODEANALYSIS_HOME=" . realpath(dirname(__FILE__) . '/../'));
+
+require_once dirname(__FILE__) . '/codeanalysis.php';

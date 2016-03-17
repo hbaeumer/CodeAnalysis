@@ -1,0 +1,28 @@
+{
+    "name": "hbaeumer/code-analysis",
+    "description": "Code Analysis",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Heiner Baeumer",
+            "email": "mail@hbaeumer.de"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.0",
+        "phing/phing": "^2.14",
+        "squizlabs/php_codesniffer": "^2.5.1",
+        "theseer/phpdox": "0.8.1.1",
+        "phploc/phploc": "^3.0"
+    },
+    "autoload": {
+        "psr-4": { "CodeAnalysis\\": "src/CodeAnalysis" }
+    },
+    "bin": [
+        "bin/codeanalysis"
+    ],
+    "config": {
+        "bin-dir": "bin"
+    }
+}
